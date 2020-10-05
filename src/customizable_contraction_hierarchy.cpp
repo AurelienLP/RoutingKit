@@ -658,7 +658,7 @@ CustomizableContractionHierarchy::CustomizableContractionHierarchy(
 namespace{
 
 	void extract_initial_metric_of_cch_arc(const CustomizableContractionHierarchy&cch, CustomizableContractionHierarchyMetric&metric, unsigned cch_arc){
-			std::cout <<  "cch_arc = " << cch_arc << std::endl;
+			std::cout <<  "\ncch_arc = " << cch_arc << std::endl;
 		if(__builtin_expect(!cch.does_cch_arc_have_input_arc.is_set(cch_arc), true)){
 			std::cout <<  "\tinf_weight !!! " << std::endl;
 			metric.forward[cch_arc] = inf_weight;
@@ -666,7 +666,7 @@ namespace{
 		} else {
 			{
 				unsigned i = cch.does_cch_arc_have_input_arc_mapper.to_local(cch_arc);
-				std::cout <<  "\ncch.does_cch_arc_have_input_arc_mapper.to_local(cch_arc)" << std::endl;
+				std::cout <<  "\tcch.does_cch_arc_have_input_arc_mapper.to_local(cch_arc)" << std::endl;
 				std::cout <<  "\ti = " << i << std::endl;
 				if(cch.forward_input_arc_of_cch[i] != invalid_id) {
 					metric.forward[cch_arc] = metric.input_weight[cch.forward_input_arc_of_cch[i]];
