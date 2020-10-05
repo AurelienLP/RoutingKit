@@ -664,7 +664,7 @@ namespace{
 		} else {
 			{
 				unsigned i = cch.does_cch_arc_have_input_arc_mapper.to_local(cch_arc);
-				std::cout <<  "cch.does_cch_arc_have_input_arc_mapper.to_local(cch_arc)" << std::endl;
+				std::cout <<  "\ncch.does_cch_arc_have_input_arc_mapper.to_local(cch_arc)" << std::endl;
 				std::cout <<  "i = " << i << std::endl;
 				std::cout <<  "cch_arc = " << cch_arc << std::endl;
 				if(cch.forward_input_arc_of_cch[i] != invalid_id) {
@@ -682,7 +682,7 @@ namespace{
 				}
 				else {
 					metric.backward[cch_arc] = inf_weight;
-					std::cout <<  "\tcch.backward_input_arc_of_cch[i] != invalid_id !!!" << std::endl;
+					std::cout <<  "\tcch.backward_input_arc_of_cch[i] == invalid_id !!!" << std::endl;
 				}
 			}
 			if(cch.does_cch_arc_have_extra_input_arc.is_set(cch_arc)){
@@ -700,6 +700,7 @@ namespace{
 	}
 
 	void extract_initial_metric(const CustomizableContractionHierarchy&cch, CustomizableContractionHierarchyMetric&metric){
+		std::cout <<  "\ncch.cch_arc_count() = " << cch.cch_arc_count() << std::endl;
 		for(unsigned cch_arc=0; cch_arc<cch.cch_arc_count(); ++cch_arc){
 			extract_initial_metric_of_cch_arc(cch, metric, cch_arc);
 		}
