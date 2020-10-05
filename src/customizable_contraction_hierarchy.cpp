@@ -15,6 +15,7 @@
 #include <assert.h>
 #include <algorithm>
 #include <stdexcept>
+#include <iostream>
 #ifdef _OPENMP
 #include <omp.h>
 #endif
@@ -663,22 +664,37 @@ namespace{
 		} else {
 			{
 				unsigned i = cch.does_cch_arc_have_input_arc_mapper.to_local(cch_arc);
-				if(cch.forward_input_arc_of_cch[i] != invalid_id)
+				std::cout <<  "cch.does_cch_arc_have_input_arc_mapper.to_local(cch_arc)" << std::endl;
+				std::cout <<  "i = " << i << std::endl;
+				std::cout <<  "cch_arc = " << cch_arc << std::endl;
+				if(cch.forward_input_arc_of_cch[i] != invalid_id) {
 					metric.forward[cch_arc] = metric.input_weight[cch.forward_input_arc_of_cch[i]];
-				else
+					std::cout <<  "\tcch.forward_input_arc_of_cch[i] != invalid_id" << std::endl;
+				}
+				else {
 					metric.forward[cch_arc] = inf_weight;
+					std::cout <<  "\tcch.forward_input_arc_of_cch[i] == invalid_id !!!" << std::endl;
+				}
 
-				if(cch.backward_input_arc_of_cch[i] != invalid_id)
+				if(cch.backward_input_arc_of_cch[i] != invalid_id) {
 					metric.backward[cch_arc] = metric.input_weight[cch.backward_input_arc_of_cch[i]];
-				else
+					std::cout <<  "\tcch.backward_input_arc_of_cch[i] != invalid_id" << std::endl;
+				}
+				else {
 					metric.backward[cch_arc] = inf_weight;
+					std::cout <<  "\tcch.backward_input_arc_of_cch[i] != invalid_id !!!" << std::endl;
+				}
 			}
 			if(cch.does_cch_arc_have_extra_input_arc.is_set(cch_arc)){
+				std::cout <<  "\tcch.does_cch_arc_have_extra_input_arc.is_set(cch_arc)" << std::endl;
 				unsigned i = cch.does_cch_arc_have_extra_input_arc_mapper.to_local(cch_arc);
-				for(unsigned j=cch.first_extra_forward_input_arc_of_cch[i]; j<cch.first_extra_forward_input_arc_of_cch[i+1]; ++j)
+				std::cout <<  "\ti = " << i << std::endl;
+				for(unsigned j=cch.first_extra_forward_input_arc_of_cch[i]; j<cch.first_extra_forward_input_arc_of_cch[i+1]; ++j) {
 					min_to(metric.forward[cch_arc], metric.input_weight[cch.extra_forward_input_arc_of_cch[j]]);
-				for(unsigned j=cch.first_extra_backward_input_arc_of_cch[i]; j<cch.first_extra_backward_input_arc_of_cch[i+1]; ++j)
+				}
+				for(unsigned j=cch.first_extra_backward_input_arc_of_cch[i]; j<cch.first_extra_backward_input_arc_of_cch[i+1]; ++j) {
 					min_to(metric.backward[cch_arc], metric.input_weight[cch.extra_backward_input_arc_of_cch[j]]);
+				}
 			}
 		}
 	}
