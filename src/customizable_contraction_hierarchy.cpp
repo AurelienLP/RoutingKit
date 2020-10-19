@@ -670,20 +670,20 @@ namespace{
 				std::cout <<  "\ti = " << i << std::endl;
 				if(cch.forward_input_arc_of_cch[i] != invalid_id) {
 					metric.forward[cch_arc] = metric.input_weight[cch.forward_input_arc_of_cch[i]];
-					std::cout <<  "\tcch.forward_input_arc_of_cch[i] != invalid_id" << std::endl;
+					std::cout <<  "\tforward valid id" << std::endl;
 				}
 				else {
 					metric.forward[cch_arc] = inf_weight;
-					std::cout <<  "\tcch.forward_input_arc_of_cch[i] == invalid_id !!!" << std::endl;
+					std::cout <<  "\tforward invalid id !!!" << std::endl;
 				}
 
 				if(cch.backward_input_arc_of_cch[i] != invalid_id) {
 					metric.backward[cch_arc] = metric.input_weight[cch.backward_input_arc_of_cch[i]];
-					std::cout <<  "\tcch.backward_input_arc_of_cch[i] != invalid_id" << std::endl;
+					std::cout <<  "\tbackward valid id" << std::endl;
 				}
 				else {
 					metric.backward[cch_arc] = inf_weight;
-					std::cout <<  "\tcch.backward_input_arc_of_cch[i] == invalid_id !!!" << std::endl;
+					std::cout <<  "\tbackward invalid id !!!" << std::endl;
 				}
 			}
 			if(cch.does_cch_arc_have_extra_input_arc.is_set(cch_arc)){
