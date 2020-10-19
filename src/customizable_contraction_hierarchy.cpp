@@ -691,9 +691,11 @@ namespace{
 				unsigned i = cch.does_cch_arc_have_extra_input_arc_mapper.to_local(cch_arc);
 				std::cout <<  "\ti = " << i << std::endl;
 				for(unsigned j=cch.first_extra_forward_input_arc_of_cch[i]; j<cch.first_extra_forward_input_arc_of_cch[i+1]; ++j) {
+					std::cout << "\tj forward = " << j << std::endl;
 					min_to(metric.forward[cch_arc], metric.input_weight[cch.extra_forward_input_arc_of_cch[j]]);
 				}
 				for(unsigned j=cch.first_extra_backward_input_arc_of_cch[i]; j<cch.first_extra_backward_input_arc_of_cch[i+1]; ++j) {
+					std::cout << "\tj backward = " << j << std::endl;
 					min_to(metric.backward[cch_arc], metric.input_weight[cch.extra_backward_input_arc_of_cch[j]]);
 				}
 			}
